@@ -1,0 +1,14 @@
+{
+  "name": "evolutionbot",
+  "version": "1.0.0",
+  "description": "EvolutionBot",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bluzzi",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
