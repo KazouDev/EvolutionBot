@@ -33,9 +33,9 @@ class CommandHandler {
                     }
                 });
 
-                const file = require("./list/" + classOfCommand + ".js");
+                const commandClass = require("./list/" + classOfCommand + ".js");
     
-                file.execCmd(client, message, args);
+                new commandClass().execCmd(client, message, args);
             } else {
                 //TODO: embed ????
                 return message.channel.send("Hum... Désolé, cette commande n'existe pas :yum:");
