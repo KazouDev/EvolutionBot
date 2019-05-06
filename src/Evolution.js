@@ -5,6 +5,7 @@ const Client = require("discord.js/src/client/Client");
 const EventHandler = require("./events/EventHandler");
 const CommandHandler = require("./commands/CommandHandler");
 
+const discord = require("discord.js");
 const fs = require("fs");
 
 /**
@@ -43,6 +44,14 @@ class Evolution extends Client {
             console.log("Error: " + information + " is undefined privateAcces.json, client stopped.");
             this.destroy();
         }
+    }
+
+    createSimpleEmbed(description){
+        if(typeof description === "string"){
+            return new discord.RichEmbed().setDescription(description);
+        } else {
+            return new discord.RichEmbed().setDescription(":x: Une erreur c'est produite lors de la création du message.");
+        }  
     }
 }
 
