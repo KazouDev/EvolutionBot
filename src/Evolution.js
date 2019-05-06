@@ -46,11 +46,15 @@ class Evolution extends Client {
         }
     }
 
-    createSimpleEmbed(description){
+    sendSimpleEmbed(channel, description){
+        if(!channel instanceof discord.Channel) return;
+
+        const embed = new discord.RichEmbed().setColor("#FF0101");
+
         if(typeof description === "string"){
-            return new discord.RichEmbed().setDescription(description);
+            channel.send(embed.setDescription(description));
         } else {
-            return new discord.RichEmbed().setDescription(":x: Une erreur c'est produite lors de la création du message.");
+            channel.send(embed.setDescription(":x: Une erreur c'est produite lors de la création du message."));
         }  
     }
 }
