@@ -11,7 +11,11 @@ class Message {
      * @param {Message} message 
      */
     message(client, message){
-        //TODO
+        if(message.author.bot) return;
+
+        if(message.content.indexOf(client.user.id) != -1){
+            client.sendSimpleEmbed(message.channel, "Vous pouvez faire **" + client.prefix + "help** pour voir la liste des commandes que je pocéde !");
+        }
     }
 }
 
