@@ -8,6 +8,9 @@ const CommandHandler = require("./commands/CommandHandler");
 const discord = require("discord.js");
 const fs = require("fs");
 
+const prefix = "!";
+const defaultColor = "#FF0101";
+
 /**
  * Client's base class.
  * @extends {Client}
@@ -31,6 +34,20 @@ class Evolution extends Client {
     }
 
     /**
+     * Get the prefix for commands.
+     */
+    get prefix(){
+        return prefix;
+    }
+
+    /**
+     * Get the default color of the bot.
+     */
+    get defaultColor(){
+        return defaultColor;
+    }
+
+    /**
      * Get private data information in configuration.
      * @param {string} information
      * @return {string}
@@ -49,7 +66,7 @@ class Evolution extends Client {
     sendSimpleEmbed(channel, description){
         if(!channel instanceof discord.Channel) return;
 
-        const embed = new discord.RichEmbed().setColor("#FF0101");
+        const embed = new discord.RichEmbed().setColor(this.defaultColor);
 
         if(typeof description === "string"){
             channel.send(embed.setDescription(description));
