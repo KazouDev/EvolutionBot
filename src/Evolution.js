@@ -1,7 +1,9 @@
 "use strict";
 
 const Client = require("discord.js/src/client/Client");
+
 const EventHandler = require("./events/EventHandler");
+const CommandHandler = require("./commands/CommandHandler");
 
 const fs = require("fs");
 
@@ -22,8 +24,9 @@ class Evolution extends Client {
         // Connect the bot with its token:
         this.login(this.getPrivateData("token"));
 
-        // Start EventHandler:
+        // Create instance of EventHandler and CommandHandler:
         new EventHandler(this);
+        new CommandHandler(this);
     }
 
     /**
