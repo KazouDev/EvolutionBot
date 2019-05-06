@@ -1,7 +1,5 @@
 "use strict";
 
-const prefix = "!";
-
 /**
  * CommandHandler allows you to launch events.
  */
@@ -13,15 +11,15 @@ class CommandHandler {
      */
     constructor(client){
         client.on("message", message => {
-            if(!message.content.startsWith(prefix)) return;
+            if(!message.content.startsWith(client.prefix)) return;
 
-            const commandsInstances = Array("Help");
+            const commandsInstances = Array("Help", "Evolution", "Participe", "Combine");
 
             const commands = commandsInstances.map(function(element){
                 return element.toLowerCase();
             });
             
-            const args = message.content.slice(prefix.length).trim().split(" ");
+            const args = message.content.slice(client.prefix.length).trim().split(" ");
             const cmd = args.shift().toLowerCase();
     
             if(commands.indexOf(cmd) !== -1){
@@ -37,8 +35,7 @@ class CommandHandler {
     
                 new commandClass().execCmd(client, message, args);
             } else {
-                //TODO: embed ????
-                return message.channel.send("Hum... Désolé, cette commande n'existe pas :yum:");
+                client.sendSimpleEmbed(message.channel, "Cette commande n'existe pas, tu peux faire **" + client.prefix + "help** pour vois la liste des commandes disponible.");
             }
         });
     }
