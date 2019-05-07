@@ -28,9 +28,10 @@ class Evolution extends Client {
         // Connect the bot with its token:
         this.login(this.getPrivateData("token"));
 
-        // Create instance of EventHandler and CommandHandler:
+        // Create instance of EventHandler, CommandHandler and TaskHandler:
         new EventHandler(this);
         new CommandHandler(this);
+        new TaskHandler(this);
     }
 
     /**
