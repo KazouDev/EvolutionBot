@@ -2,4 +2,4 @@
 const Evolution = require("./src/Evolution");
 new Evolution();
 
-// Required modules to launch the bot: discord.js, fs.oui
+// Required modules to launch the bot: discord.js, fs.
