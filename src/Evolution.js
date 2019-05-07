@@ -4,9 +4,11 @@ const Client = require("discord.js/src/client/Client");
 
 const EventHandler = require("./events/EventHandler");
 const CommandHandler = require("./commands/CommandHandler");
+const TaskHandler = require("./tasks/TaskHandler");
 
 const discord = require("discord.js");
 const fs = require("fs");
+const request = require("request");
 
 const prefix = "!";
 const defaultColor = "#FF0101";
@@ -62,6 +64,44 @@ class Evolution extends Client {
             console.log("Error: " + information + " is undefined privateAcces.json, client stopped.");
             this.destroy();
         }
+    }
+
+    /**
+     * Get information in Clash of Clans API.
+     * @param {string} path 
+     * @return {string}
+     */
+    requestClashOfClansApi(path){
+        if(typeof path !== "string"){
+            console.log("Error: requestClashOfClansApi() first argument require a string.");
+            this.destroy();
+        }
+
+        let rep;
+
+        request.get({
+            method: "GET",
+            url: "https://api.clashofclans.com/v1/" + path,
+            headers: {
+                "Authorization": "Bearer " + this.getPrivateData("api-coc-token"),
+                "Accept": "application/json"
+            }
+        }, (error, response, body) => {
+            if(Array(400, 403, 404, 429, 500, 503).indexOf(response.statusCode) !== -1){
+                console.log("Error: " + response.statusCode.reason);
+                this.destroy();
+            }
+            
+            if(!error && response.statusCode === 200){
+                const rep = JSON.parse(body);
+
+                if(rep){
+                    return rep;
+                } else {
+                    return console.log("Error: Request don't work.");
+                }
+            }
+        });
     }
 
     sendSimpleEmbed(channel, description){

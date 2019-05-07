@@ -13,7 +13,7 @@ class CommandHandler {
         client.on("message", message => {
             if(!message.content.startsWith(client.prefix)) return;
 
-            const commandsInstances = Array("Help", "Evolution", "Participe", "Combine");
+            const commandsInstances = Array("Help", "Evolution", "Participe", "Combine", "Test");
 
             const commands = commandsInstances.map(function(element){
                 return element.toLowerCase();
