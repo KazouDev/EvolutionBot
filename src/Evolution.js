@@ -116,6 +116,18 @@ class Evolution extends Client {
             channel.send(embed.setDescription(":x: Une erreur c'est produite lors de la création du message."));
         }  
     }
+
+    writeJson(file, data){
+        if(!file || !data){
+            console.log("Error: You don't indicate the file or data.");
+            this.destroy();
+        } else {
+            fs.writeFile("./resources/" + file + ".json", JSON.stringify(data, null, "\t")), err => {
+                console.log("Error:" + err);
+                this.destroy();
+            }
+        }
+    }
 }
 
 module.exports = Evolution;
