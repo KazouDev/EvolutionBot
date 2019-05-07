@@ -68,10 +68,10 @@ class Evolution extends Client {
 
     /**
      * Get information in Clash of Clans API.
-     * @param {string} path 
-     * @return {string}
+     * @param {string} path
+     * @param {function} callback
      */
-    requestClashOfClansApi(path){
+    requestClashOfClansApi(path, callback){
         if(typeof path !== "string"){
             console.log("Error: requestClashOfClansApi() first argument require a string.");
             this.destroy();
@@ -96,9 +96,10 @@ class Evolution extends Client {
                 const rep = JSON.parse(body);
 
                 if(rep){
-                    return rep;
+                    callback(rep);
                 } else {
                     return console.log("Error: Request don't work.");
+                    this.destroy();
                 }
             }
         });

@@ -14,7 +14,9 @@ class Test {
      * @param {array} args
      */
     execCmd(client, message, args){
-        console.log(client.requestClashOfClansApi("clans/%2322CGY098C"));
+        client.requestClashOfClansApi("clans/%2322CGY098C", function(response){
+            console.log(response);
+        });
     }
 }
 
