@@ -1,7 +1,5 @@
 "use strict";
 
-const discord = require("discord.js");
-
 /**
  * Test's class.
  */
