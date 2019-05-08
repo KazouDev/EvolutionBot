@@ -15,7 +15,13 @@ class IconTask {
                 if(response.clanLevel === client.getClanLvl()){
                     return;
                 } else {
+                    var clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
+
                     client.guilds.get("572577531098562583").setImage(response.badgeUrls.medium);
+                    clan.level = client.getClanLvl + 1;
+
+                    client.writeJson(clan, clan);
+                    
                 }
             });
         }, 60000);

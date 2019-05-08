@@ -1,6 +1,6 @@
 "use strict";
 
-const TestTask = require("./list/TaskTest.js");
+const IconTask = require("./list/IconTask.js");
 
 /**
  * TaskHandler allows you to launch tasks.
