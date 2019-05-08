@@ -17,6 +17,15 @@ class ClanInfo {
         return clan.lvl;
     }
     /**
+     * Return clan id.
+     */
+    static get clanID(){
+        const clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
+
+        return clan.id.replace("#", "%23");
+    }
+
+    /**
      * Get Clash of Clans tag by discord user account,
      * You must to use /combine command for associate dicord and clash of clan account.
      * @param {string} userid 
