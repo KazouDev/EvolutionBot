@@ -14,15 +14,17 @@ class ClanInfo {
     static get clanLevel(){
         const clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
 
-        return clan.lvl;
+        if(clan.lvl){
+            return clan.lvl;
+        } else {
+            return 1;
+        }
     }
     /**
      * Return clan id.
      */
     static get clanID(){
-        const clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
-
-        return clan.id.replace("#", "%23");
+        return "%2322CGY098C";
     }
 
     /**
