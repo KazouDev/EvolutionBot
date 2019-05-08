@@ -1,5 +1,6 @@
 # To prevent the registration of all modules:
 node_modules
+package-lock.json
 
 # This is private information (like: token,# database...):
 **/privateAcces.json
