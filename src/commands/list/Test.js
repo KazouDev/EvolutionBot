@@ -1,5 +1,7 @@
 "use strict";
 
+const ClanInfo = require("../../ClanInfo");
+
 /**
  * Test's class.
  */
@@ -12,7 +14,7 @@ class Test {
      * @param {array} args
      */
     execCmd(client, message, args){
-        client.requestClashOfClansApi("clans/%2322CGY098C", function(response){
+        client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
             console.log(response);
         });
     }

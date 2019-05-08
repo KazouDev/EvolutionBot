@@ -1,5 +1,7 @@
 "use strict";
 
+const ClanInfo = require("../../ClanInfo");
+
 const discord = require("discord.js");
 
 /**
@@ -14,7 +16,7 @@ class Evolution {
      * @param {array} args
      */
     execCmd(client, message, args){
-        client.requestClashOfClansApi("clans/%2322CGY098C", function(response){
+        client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
             const embed = new discord.RichEmbed().setColor(client.defaultColor);
 
             const memberList = response.memberList.map(function(element){

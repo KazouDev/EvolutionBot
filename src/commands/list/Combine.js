@@ -24,7 +24,7 @@ class Combine {
         const userid = message.mentions.members.first().id;
         let comb = JSON.parse(fs.readFileSync("./resources/combine.json"));
         
-        client.requestClashOfClansApi("clans/%2322CGY098C", function(response){
+        client.requestClashOfClansApi("clans/22CGY098C", function(response){
             response.memberList.forEach(element => {
                 if(element.tag === args[1]){
 
