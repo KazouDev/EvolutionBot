@@ -12,7 +12,7 @@ class TaskHandler {
      * @param {Evolution} client
      */
     constructor(client){
-        new TestTask().runTask(client);
+        new IconTask().runTask(client);
     }
 }
 
