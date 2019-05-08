@@ -5,10 +5,10 @@ const fs = require("fs");
 /**
  * Task's class.
  */
-class IconTask {
+class ClanUpdate {
 
     /**
-     * On start of the bot, start task for update a guild icon.
+     * Update the config of clan, clan icon, player combined account name...
      * @param {Evolution} client 
      */
     runTask(client){
@@ -31,4 +31,4 @@ class IconTask {
     }
 }
 
-module.exports = IconTask;
+module.exports = ClanUpdate;

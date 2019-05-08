@@ -1,6 +1,6 @@
 "use strict";
 
-const IconTask = require("./list/IconTask.js");
+const ClanUpdate = require("./list/ClanUpdate");
 
 /**
  * TaskHandler allows you to launch tasks.
@@ -12,7 +12,7 @@ class TaskHandler {
      * @param {Evolution} client
      */
     constructor(client){
-        new IconTask().runTask(client);
+        new ClanUpdate().runTask(client);
     }
 }
 
