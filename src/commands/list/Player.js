@@ -5,6 +5,9 @@ const ClanInfo = require("../../ClanInfo");
 const discord = require("discord.js");
 const fs = require("fs");
 
+let comb = JSON.parse(fs.readFileSync("./resources/combine.json"));
+
+
 /**
  * Player's class.
  */
@@ -19,7 +22,7 @@ class Player {
     execCmd(client, message, args){
 
         if(args.length <= 1){
-            client.sendSimpleEmbed(message.channel, "Syntaxe: !player combine <mention> <id CoC>\nSyntaxe: !player info <mention>");
+            client.sendSimpleEmbed(message.channel, "Syntaxe: " + client.prefix + "player combine [@mention] [#idCoC]\nSyntaxe: " + client.prefix + "player info [@mention]");
             //client.sendSimpleEmbed(message.channel, "Syntaxe: !player <info> <mention>");
             return;
         }
@@ -35,7 +38,6 @@ class Player {
             if(!args[2].startsWith("#")) return client.sendSimpleEmbed(message.channel, usage);
 
             const userid = message.mentions.members.first().id;
-            let comb = JSON.parse(fs.readFileSync("./resources/combine.json"));
             
             client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
                 response.memberList.forEach(element => {
@@ -57,11 +59,32 @@ class Player {
             break;
 
             case "info":
-                client.sendSimpleEmbed(message.channel, "Commande en cours de développement...");
+
+                if(!message.mentions.members.first()) return client.sendSimpleEmbed(message.channel, usage);
+                if(!comb[message.mentions.members.first().id]) return client.sendSimpleEmbed(message.channel, "Ce joueurs n'est pas combiné.");
+
+                const uid = message.mentions.members.first().id;
+                client.requestClashOfClansApi("players/" + comb[uid].tag.replace("#", "%23"), function(response){
+                const embed = new discord.RichEmbed().setColor(client.defaultColor)
+
+                embed.setTitle("Information de " + comb[uid].name);
+                embed.addField("Tag", comb[uid].tag);
+                embed.addField("HDV", response.townHallLevel);
+                embed.addField("MDO", response.builderHallLevel);
+                embed.addField("Niveaux", response.expLevel);
+                embed.addField("Trophés", response.trophies);
+                embed.addField("HDV", response.townHallLevel);
+
+                embed.setThumbnail(message.mentions.members.first().user.avatarURL);
+                embed.setImage(response.league.iconUrls.medium);
+
+                message.channel.send(embed);
+
+                });
             break;
 
             default:
-                client.sendSimpleEmbed(message.channel, "Syntaxe: !player <combine, info> <mention>");
+                client.sendSimpleEmbed(message.channel, "Syntaxe: !player combine <mention> <id CoC>\nSyntaxe: !player info <mention>");
             break;
         }       
     } 
