@@ -16,23 +16,27 @@ class Evolution {
      * @param {array} args
      */
     execCmd(client, message, args){
+        const embed = new discord.RichEmbed().setColor(client.defaultColor).setTitle("EVOLUTION");
+
         client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
-            const embed = new discord.RichEmbed().setColor(client.defaultColor);
-
-            const memberList = response.memberList.map(function(element){
-                return "(" + element.role + ") " + element.name;
-            })
-
-            embed.setTitle("Evolution");
-            embed.setDescription(response.description);
-            embed.setThumbnail(response.badgeUrls.small);
-
-            embed.addField("Membres (" + response.members + ")", memberList.join(", ") + ".");
-
-            embed.addField("Nombre de guerre gagné", response.warWins);
-            embed.addField("Nombre de guerre perdu", response.warLosses);
-
-            message.channel.send(embed);
+            switch(args){
+                default:
+                    const memberList = response.memberList.map(function(element){
+                        return "(" + element.role + ") " + element.name;
+                    })
+        
+                
+                    embed.setDescription(response.description);
+                    embed.setThumbnail(response.badgeUrls.small);
+        
+                    embed.addField("Membres (" + response.members + ")", memberList.join(", ") + ".");
+        
+                    embed.addField("Nombre de guerre gagné", response.warWins);
+                    embed.addField("Nombre de guerre perdu", response.warLosses);
+        
+                    message.channel.send(embed);
+                break;
+            }
         });
     }
 }
