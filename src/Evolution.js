@@ -77,8 +77,6 @@ class Evolution extends Client {
             this.destroy();
         }
 
-        let rep;
-
         request.get({
             method: "GET",
             url: "https://api.clashofclans.com/v1/" + path,
