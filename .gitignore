@@ -2,5 +2,8 @@
 node_modules
 package-lock.json
 
-# This is private information (like: token,# database...):
+# This is private information (like: token, database...):
 **/privateAcces.json
+
+# Visual Studio Code generated files:
+.vscode/launch.json
