@@ -138,6 +138,13 @@ class Evolution extends Client {
             }
         });
     }
+    /**
+     * Traduct Heroes String Name.
+     * @param {string} heroes
+     */
+    traductHeroes(heroes) {
+        return heroes.replace("Barbarian King", "Roi des Barbares").replace("Archer Queen", "Reine des Archers").replace("Grand Warden", "Grand Gardien").replace("Battle Machine", "Machine de Combat");
+    }
 }
 
 module.exports = Evolution;
