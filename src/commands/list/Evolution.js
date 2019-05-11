@@ -16,27 +16,31 @@ class Evolution {
      * @param {array} args
      */
     execCmd(client, message, args){
-        const embed = new discord.RichEmbed().setColor(client.defaultColor).setTitle("EVOLUTION");
+        const embed = new discord.RichEmbed().setColor(client.defaultColor);
 
         client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
-            switch(args){
+            if(typeof args[0] === "string"){
+                embed.setTitle("Evolution - " + args[0].charAt(0).toUpperCase() + args[0].substring(1).toLowerCase());
+            } else {
+                embed.setTitle("Evolution - Commandes");
+            }
+
+            embed.setThumbnail(response.badgeUrls.medium);
+
+            switch(args[0]){
                 default:
-                    const memberList = response.memberList.map(function(element){
-                        return "(" + element.role + ") " + element.name;
-                    })
-        
-                
-                    embed.setDescription(response.description);
-                    embed.setThumbnail(response.badgeUrls.small);
-        
-                    embed.addField("Membres (" + response.members + ")", memberList.join(", ") + ".");
-        
-                    embed.addField("Nombre de guerre gagné", response.warWins);
-                    embed.addField("Nombre de guerre perdu", response.warLosses);
-        
-                    message.channel.send(embed);
+                    embed.setDescription("Voici la liste des commandes disponibles pour obtenir des informations sur le clan.");
+                    embed.addField(client.prefix + "evolution info", "Obtenir les informations du clan.");
+                    embed.addField(client.prefix + "evolution guerre", "Voir le nombre de guerre gagné et perdu, les guerres en cours...");
+                    embed.addField(client.prefix + "evolution membres", "Obtenir une liste des membres du clan.");
+                break;
+
+                case "info":
+                    //TODO
                 break;
             }
+
+            message.channel.send(embed);
         });
     }
 }
