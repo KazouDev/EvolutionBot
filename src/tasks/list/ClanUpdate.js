@@ -17,15 +17,13 @@ class ClanUpdate {
         setInterval(function(){
             client.requestClashOfClansApi("clans/"+ ClanInfo.clanID, function(response){
                 if(response.clanLevel !== ClanInfo.clanLvl){
-                    client.guilds.get("572577531098562583").setIcon(response.badgeUrls.medium);
-                    client.user.setAvatar(response.badgeUrls.medium);
+                    client.guilds.get("572577531098562583").setIcon(response.badgeUrls.large);
+                    client.user.setAvatar(response.badgeUrls.large);
                 }
 
                 let clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
 
-                clan = {
-                    "lvl": response.clanLevel
-                }
+                clan["lvl"] = reponse.clanLevel;
 
                 client.writeJson("clan", clan);
             });
