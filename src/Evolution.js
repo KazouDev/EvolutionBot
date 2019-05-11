@@ -85,8 +85,14 @@ class Evolution extends Client {
                 "Accept": "application/json"
             }
         }, (error, response, body) => {
-            if(Array(400, 403, 404, 429, 500, 503).indexOf(response.statusCode) !== -1){
-                console.log("Error: " + response.statusCode.reason);
+
+            if(response.statusCode === 404){
+                callback(404);
+                return;
+            }
+
+            if(Array(400, 403, 429, 500, 503).indexOf(response.statusCode) !== -1){
+                console.log("Error: " + response.statusCode.reason); //TODO: fix reason.
                 this.destroy();
             }
             
