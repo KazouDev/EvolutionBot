@@ -20,6 +20,14 @@ class ClanInfo {
             return 1;
         }
     }
+    
+    /**
+     * Return the name of the clan.
+     */
+    static get clanName(){
+        //TODO
+    }
+    
     /**
      * Return clan id.
      */
