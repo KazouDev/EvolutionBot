@@ -22,22 +22,24 @@ class WarUpdate {
             client.requestClashOfClansApi("clans/"+ ClanInfo.clanID + "/currentwar", function(response){
                 if(clan["inwar"] === false){
                     if(response.state === "inWar"){
-
                         clan["inwar"] = true;
 
                         client.writeJson("clan", clan);
 
                         let clanMember = Array();
+
                         response.clan.members.forEach(element => {
                             clanMember.push(element.name)
                         });
 
                         let opponentMember = Array();
+
                         response.opponent.members.forEach(element => {
                             opponentMember.push(element.name)
                         });
 
                         const embed = new discord.RichEmbed().setColor(client.defaultColor);
+                        
                         embed.setTitle(response.clan.name + " VS " + response.opponent.name);
                         embed.addField("Nombre de joueurs", response.teamSize);
                         embed.addField("Jours de Guerre", moment(response.startTime).format("LLL"));
