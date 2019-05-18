@@ -23,7 +23,7 @@ class ClanUpdate {
 
                 let clan = JSON.parse(fs.readFileSync("./resources/clan.json"));
 
-                clan["lvl"] = reponse.clanLevel;
+                clan["lvl"] = response.clanLevel;
 
                 client.writeJson("clan", clan);
             });

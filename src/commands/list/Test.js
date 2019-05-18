@@ -14,8 +14,8 @@ class Test {
      * @param {array} args
      */
     execCmd(client, message, args){
-        client.requestClashOfClansApi("clans/" + ClanInfo.clanID, function(response){
-            console.log(response);
+        client.requestClashOfClansApi("clans/" + ClanInfo.clanID + "/currentwar", function(response){
+            console.log(response.state);
         });
     }
 }

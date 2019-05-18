@@ -4,4 +4,4 @@ new Evolution();
 
 console.log("Info: starting...");
 
-// Required modules to launch the bot: discord.js, fs, request.
+// Required modules to launch the bot: discord.js, fs, request, moment.

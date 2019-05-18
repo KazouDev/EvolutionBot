@@ -1,6 +1,7 @@
 "use strict";
 
 const ClanUpdate = require("./list/ClanUpdate");
+const WarUpdate = require("./list/WarUpdate");
 
 /**
  * TaskHandler allows you to launch tasks.
@@ -13,6 +14,7 @@ class TaskHandler {
      */
     constructor(client){
         new ClanUpdate().runTask(client);
+        new WarUpdate().runTask(client);
     }
 }
 
