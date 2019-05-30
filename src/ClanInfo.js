@@ -25,7 +25,7 @@ class ClanInfo {
      * Return the name of the clan.
      */
     static get clanName(){
-        //TODO
+        return "EVOLUTION";
     }
     
     /**
